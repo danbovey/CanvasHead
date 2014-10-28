@@ -1,0 +1,97 @@
+@import url(http://fonts.googleapis.com/css?family=Bowlby+One+SC);
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	font-family: Arial, sans-serif;
+	background: #333;
+	color: #FFF;
+}
+
+.container {
+	width: 800px;
+	margin: 0 auto;
+}
+
+h1 {
+	margin-top: 25px;
+	font-family: 'Bowlby One SC', cursive;
+	font-size: 48px;
+	letter-spacing: 5px;
+}
+h1 span {
+	color: #FF4444;
+}
+
+canvas {
+	margin: 25px 0 15px;
+	background: #E8D8C0;
+}
+
+p {
+	margin: 10px 0;
+}
+p a {
+	color: inherit;
+}
+
+.todo {
+	position: absolute;
+	top: 124px;
+	right: 30px;
+	width: 260px;
+	min-height: 500px;
+    font: normal 12px/1.5 "Lucida Grande", arial, sans-serif;
+    padding: 6px 42px 4px 42px;
+    color: #444;
+    line-height: 20px;
+    border: 1px solid #d2d2d2;
+ 
+    background: #fff;
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#d9eaf3), color-stop(4%, #fff)) 0 4px;
+    background: -webkit-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -moz-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -ms-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: -o-linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+    background: linear-gradient(top, #d9eaf3 0%, #fff 8%) 0 4px;
+ 
+    -webkit-background-size: 100% 20px;
+    -moz-background-size: 100% 20px;
+    -ms-background-size: 100% 20px;
+    -o-background-size: 100% 20px;
+    background-size: 100% 20px;
+ 
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+ 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+}
+.todo:before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    top: 0;
+    left: 30px;
+    bottom: 0;
+    border: 1px solid;
+    border-color: transparent #efe4e4;
+}
+.todo ul {
+	position: relative;
+	left: -7px;
+}
+.todo li {
+	padding-left: 7px;
+}
+.todo li:nth-of-type(1) {
+	padding-bottom: 20px;
+}
+.todo img {
+	vertical-align: text-top;
+	padding-left: 10px;
+}
