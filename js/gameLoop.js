@@ -330,4 +330,8 @@ function ui() {
 		healthFG.width = (health / 100) * 150;
 	}
 	scoreText.text = score;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> First version where collision handling works
