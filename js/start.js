@@ -31,6 +31,8 @@ var game,
 	bullets = [],
 	bulletID = 0,
 	shooting,
+	upgrade,
+	damage,
 	ammo;
 
 window.requestAnimFrame = (function() {
@@ -103,6 +105,7 @@ function Rectangle(params) {
 	this.y2 = pick(params.y2, null);
 	this.eating = false;
 
+	this.health = pick(params.health, 100);
 	this.kill = false;
 
 	this.width = pick(params.width, 100);
@@ -138,14 +141,15 @@ function Text(params) {
 
 	this.strokeStyle = pick(params.strokeStyle, null);
 	this.lineWidth = pick(params.lineWidth, null);
+	this.text = pick(params.text, '');
 
 	this.draw = function() {
 		this.setupContext();
 		this.ctx.font = params.font;
 		ctx.strokeStyle = this.strokeStyle;
     	ctx.lineWidth = this.lineWidth;
-    	this.ctx.strokeText(params.text, this.x, this.y);
-		this.ctx.fillText(params.text, this.x, this.y);
+    	this.ctx.strokeText(this.text, this.x, this.y);
+		this.ctx.fillText(this.text, this.x, this.y);
 	}
 }
 
@@ -164,29 +168,32 @@ function init() {
 	wave = 1;
 	shooting = false;
 	ammo = 100;
-
-	score = pad(score, 8);
+	upgrade = 0;
+	damage = 1;
 
 	healthBG = new Rectangle({
 		type: 'ui',
 		ctx: ctx,
 		x: 10,
 		y: 10,
-		width: 150,
-		height: 20,
-		fillStyle: '#B22F2F'
+		width: 24,
+		height: 5,
+		fillStyle: '#B22F2F',
+		lineWidth: 1,
+		strokeStyle: '#999999'
 	});
 	healthFG = new Rectangle({
 		type: 'ui',
 		ctx: ctx,
 		x: 10,
 		y: 10,
-		width: 150,
-		height: 20,
+		width: 24,
+		height: 5,
 		fillStyle: '#44FF44'
 	});
 
 	scoreText = new Text({
+		type: 'ui',
 		ctx: ctx,
 		x: 338,
 		y: 30,
@@ -194,10 +201,11 @@ function init() {
 		fillStyle: '#FFFFFF',
 		strokeStyle: '#000000',
 		lineWidth: 4,
-		text: score
+		text: pad(score, 8)
 	});
 
 	gameOver = new Text({
+		type: 'ui',
 		ctx: ctx,
 		x: 243,
 		y: 267,
@@ -282,7 +290,7 @@ function init() {
 		}
 	};
 
-	scene.objects = [player, wall1, wall2, wall3, wall4, scoreText, healthBG, healthFG];
+	scene.objects = [player, healthBG, healthFG, wall1, wall2, wall3, wall4, scoreText];
 	if(!request) {
 		gameLoop();
 	}
@@ -300,4 +308,25 @@ function pick(a, b) {
 function pad(str, max) {
 	str = str.toString();
 	return str.length < max ? pad('0' + str, max) : str;
+}
+
+function addObject(object) {
+	scene.objects.push(object);
+
+	// Move the UI to front of scene
+	if(game) {
+		for(var i = 0; i < scene.objects.length; i++) {
+			if(scene.objects[i].type === 'ui') {
+				scene.objects.push(scene.objects[i]);
+				scene.objects.splice(i, 1);
+			}
+		}
+
+		scene.objects.push(healthBG, healthFG, scoreText);
+	}
+}
+
+function removeObject(object) {
+	var i = scene.objects.indexOf(object);
+	scene.objects.splice(i, 1);
 }
