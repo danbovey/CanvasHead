@@ -6,14 +6,11 @@ function gameLoop() {
 			scene.objects[i].lastY = scene.objects[i].y;
 		}
 
-		aiLoop++;
-		if(aiLoop === 5) {
-			aiLoop = 0;
-		}
-
 		input();
 		update();
 		render();
+
+		console.log(scene.objects.length);
 	}
 }
 
@@ -138,6 +135,7 @@ function shoot() {
 			break;
 		}
 		
+		// should be bullets.push(bullet)
 		addObject(bullet);
 
 		bulletID++;
@@ -235,7 +233,7 @@ function collision() {
 	indexesToRemove = [];
 }
 
-// var wavesStarted = false;
+var wavesStarted = false;
 var waveTime = 12000;
 var waveCountdown = window.setInterval(function() {
 	wave++;
@@ -247,7 +245,7 @@ function waves() {
 	// if(wavesStarted === false) {
 		// wavesStarted = true;
 		if(wavesEntered[wave] == undefined) {
-			for(var i = 0, algorithm = Math.ceil(wave * 2); i <= algorithm; i++) {
+			for(var i = 0, algorithm = wave * 2; i <= algorithm; i++) {
 				if(i < algorithm / 2) {
 					var zombie = new Rectangle({
 						id: zombieID,
@@ -258,7 +256,7 @@ function waves() {
 						y: -36,
 						width: 24,
 						height: 36,
-						fillStyle: '#FFFFFF',
+						fillStyle: '#000000',
 						lineWidth: 1,
 						strokeStyle: '#000000'
 					});
@@ -272,11 +270,12 @@ function waves() {
 						y: canvas.height,
 						width: 24,
 						height: 36,
-						fillStyle: '#FFFFFF',
+						fillStyle: '#000000',
 						lineWidth: 1,
 						strokeStyle: '#000000'
 					});
 				}
+				// Should be only zombies.push
 				zombies.push(zombie);
 				addObject(zombie);
 

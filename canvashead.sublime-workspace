@@ -1,0 +1,613 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"wave",
+				"waveTime"
+			],
+			[
+				"p",
+				"push"
+			],
+			[
+				"ob",
+				"objects"
+			],
+			[
+				"freshdesk",
+				"freshdesk_user_id"
+			],
+			[
+				"tick",
+				"ticket_id"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 1785,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 2000,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/start.js",
+			"settings":
+			{
+				"buffer_size": 7677,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/gameLoop.js",
+			"settings":
+			{
+				"buffer_size": 9977,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 101.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 583.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/danbovey/Documents/Uni/canvashead",
+		"/Users/danbovey/Documents/Uni/canvashead/js"
+	],
+	"file_history":
+	[
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/controllers/DashboardController.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/models/Site.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/libraries/Freshdesk.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/controllers/SupportController.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/home.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/public/scss/main.scss",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/layout/main.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/public/scss/_global.scss",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/support/newticket.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/support/home.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/support/ticket.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/routes.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/libraries/FreshDesk.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/controllers/AccountController.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/account/register.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/libraries/FreshDesk.txt",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/models/User.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/users.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/public/js/script.js",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/home.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/start/global.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/start/global.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/bootstrap/paths.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/bootstrap/start.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/bootstrap/autoload.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/public/fresh.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/new-site.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/controllers/DashboardController.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/curl.php",
+		"/Users/danbovey/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/controllers/BillingController.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/public/scss/_buttons.scss",
+		"/Users/danbovey/Documents/Web/Minute Panel/public/scss/_variables.scss",
+		"/Volumes/b006037c/wordpress/wp-content/themes/myChild/style.css",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/account/guest.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/controllers/AccountController.php",
+		"/Users/danbovey/Documents/Uni/sss/3/task1.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/layout/main.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/account/login.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/account/register.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/views/account/login.blade.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/config/database.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/routes.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/controllers/PageController.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/app/config/app.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/config/database.php",
+		"/Users/danbovey/Documents/Web/Minute Panel/index.php",
+		"/Users/danbovey/Downloads/animation-demos-new/4-colour/index.html",
+		"/Users/danbovey/Documents/Web/Hosting/install.sh",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/js/script.js",
+		"/Users/danbovey/Documents/Uni/pwha/3/input.js",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/functions.php",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/scss/style.scss",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/scss/_global.scss",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/woocommerce.php",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/scss/_imports.scss",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/front-page.php",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/header.php",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/footer.php",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/functions.php",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/scss/style.scss",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/scss/_global.scss",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/scss/_imports.scss",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/scss/_variables.scss",
+		"/Users/danbovey/Documents/Web/WordPress/blank-canvas/wp-content/themes/blankcanvas/functions.php",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/index.php",
+		"/Users/danbovey/Documents/Web/Dan Bovey/front-page.php",
+		"/Users/danbovey/Documents/Web/Dan Bovey/functions.php",
+		"/Users/danbovey/Documents/Web/WordPress/midnight/wp-content/themes/midnight/scss/_buttons.scss",
+		"/Users/danbovey/Documents/Web/WordPress/blank-canvas/wp-content/themes/blankcanvas/scss/style.scss",
+		"/Users/danbovey/Documents/Web/WordPress/blank-canvas/wp-config.php",
+		"/Users/danbovey/Documents/Web/WordPress/wp-content/themes/blankcanvas/header.php",
+		"/Users/danbovey/Documents/Web/WordPress/wp-content/themes/blankcanvas/functions.php",
+		"/Users/danbovey/Documents/Web/Hosting/mail.php",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/config.rb",
+		"/Users/danbovey/Documents/Web/WordPress/wp-content/themes/blankcanvas/scss/style.scss",
+		"/Users/danbovey/Documents/Web/WordPress/wp-content/themes/blankcanvas/sidebar.php",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/header.php",
+		"/Users/danbovey/Documents/Web/Minute Host/wp-content/themes/minutehost/scss/_variables.scss",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/scss/style.scss",
+		"/Users/danbovey/Documents/Web/Minute Host/index.php",
+		"/Users/danbovey/Documents/Web/Minute Host/.gitignore",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/header-home.php",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/front-page.php",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/scss/_variables.scss",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/scss/_global.scss",
+		"/Users/danbovey/Documents/Web/Drunk Coders/wp-content/themes/drunkcoders/index.php",
+		"/Users/danbovey/Documents/Web/Drunk Coders/index.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/emails/applications/new-builder.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/emails/auth/activate.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/emails/auth/recover-password.blade.php",
+		"/Users/danbovey/Documents/Web/Prodia/app/config/app.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/public/scss/main.scss",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/public/css/main.css",
+		"/Users/danbovey/Documents/Web/Leanne Bovey/wp-config.php",
+		"/Users/danbovey/Library/Caches/Cleanup At Startup/Transmit/ED471176-7C09-45FD-A490-EF298141558F/home.blade.php",
+		"/Users/danbovey/Library/Caches/Cleanup At Startup/Transmit/490ADBDB-4D42-4CEF-B6AC-0CD753211C51/routes.php",
+		"/Users/danbovey/Library/Caches/Cleanup At Startup/Transmit/20F5F4AE-53B4-42FB-8602-7B76E5C6436F/ChatController.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/public/scss/_forms.scss",
+		"/Users/danbovey/Library/Caches/Cleanup At Startup/Transmit/CA4807AE-5C1C-408C-999F-B93E0CF56156/login.blade.php",
+		"/Users/danbovey/Library/Caches/Cleanup At Startup/Transmit/E2E78867-8B5F-4713-8C66-C433D7814544/AccountController.php",
+		"/Users/danbovey/Library/Caches/Cleanup At Startup/Transmit/4F4E422E-81E8-48BD-8498-D662F94E7065/users.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/account/edit.blade.php",
+		"/Users/danbovey/Dropbox/Private/New Text Document.txt",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/config/app.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/public/js/script.js",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/public/scss/dashboard.scss",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/layout/dashboard.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/dashboard/home.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/layout/navigation-top.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/public/scss/_variables.scss",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/controllers/PageController.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/rules.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/tos.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/privacy.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/downloads.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/players.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/layout/navigation.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/leaderboards.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/views/player.blade.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser/Filter/Links.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser/Filter/Images.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser/Filter/Extended.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser/Filter/Email.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser/Filter/Basic.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser/Filter/Lists.php",
+		"/Users/danbovey/Documents/Web/AbsoluteCraft/app/libraries/BBCodeParser2/Filter/Basic.php"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/danbovey/Documents/Web/Minute Panel/app",
+			"/Users/danbovey/Documents/Web/WordPress/blank-canvas",
+			"/Users/danbovey/Documents/Web/AbsoluteCraft",
+			"/Users/danbovey/Documents/Web/AbsoluteCraft/app",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"console",
+			"FFFFFF",
+			"console.log",
+			"scene.objects.length",
+			"object[",
+			"indexesToRemove",
+			"health",
+			"params",
+			"score =",
+			"score",
+			"object",
+			" 2",
+			"2",
+			"6",
+			"push",
+			".push",
+			"Managed",
+			"font-size: 24px",
+			"$_POST",
+			"FreshDesk",
+			"freshdesk",
+			"FreshDesk",
+			"input",
+			"Auth::user()->",
+			" = ''",
+			" (",
+			"https",
+			"getUserByEMailQuery",
+			"restCall",
+			"ticket",
+			"tickets",
+			"ombies[",
+			"FreshdeskRest",
+			"id",
+			"user_id",
+			"dan@danbovey.co.uk",
+			"pt (",
+			"url::to",
+			"status",
+			"32",
+			"/p",
+			"<p",
+			"#479DE4",
+			"transparent",
+			"#0000FF",
+			"h5",
+			"class=\"server_size_label\"",
+			"for=\"server_size_",
+			"name=\"server_size\"",
+			"<",
+			"$primary",
+			"md-",
+			"width",
+			"route('",
+			"primary",
+			"blankcanvas",
+			"Work",
+			"work",
+			");",
+			"register_my_menu",
+			"http://local.wordpress/",
+			"header",
+			"sidebar",
+			"arphabet",
+			"!important",
+			".slider",
+			"rvb",
+			"chat-",
+			"token",
+			"libraries",
+			"local.absolutecraft",
+			"http://absolutecraft.co.uk",
+			"rotate(-10deg);",
+			"transform: ",
+			"tra",
+			"1",
+			", 0.9",
+			", ",
+			"2s",
+			"0.5",
+			"2, 2",
+			"1, 1",
+			"0.75, 0.75",
+			"50",
+			"2, 2",
+			"1.5, 1.5",
+			"1, 1",
+			"100%",
+			"1, 1",
+			"100",
+			"5s",
+			"infinite",
+			"100%   ",
+			",0",
+			",1",
+			"NAME-YOUR-ANIMATION",
+			"/* ",
+			"-moz",
+			"moz",
+			" }",
+			"0% { ",
+			"bumpin",
+			"20deg",
+			"translate(100px)",
+			"<p>This Agreement was last modified on June 04, 2014.</p><br>\n				<p>Please read these Terms of Service (\"Agreement\", \"Terms of Service\") carefully before using http://absolutecraft.co.uk (\"the Site\") operated by AbsoluteCraft (\"us\", \"we\", or \"our\"). This Agreement sets forth the legally binding terms and conditions for your use of the Site at http://absolutecraft.co.uk.</p><br>\n				<p>By accessing or using the Site in any manner, including, but not limited to, visiting or browsing the Site or contributing content or other materials to the Site, you agree to be bound by these Terms of Service. Capitalized terms are defined in this Agreement.</p><br>\n				<h3>Intellectual Property</h3>\n				<p>The Site and its original content, features and functionality are owned by AbsoluteCraft and are protected by international copyright, trademark, patent, trade secret and other intellectual property or proprietary rights laws.</p><br>\n				<h3>Termination</h3>\n				<p>We may terminate your access to the Site, without cause or notice, which may result in the forfeiture and destruction of all information associated with you. All provisions of this Agreement that by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p><br>\n				<h3>Links To Other Sites</h3>\n				<p>Our Site may contain links to third-party sites that are not owned or controlled by AbsoluteCraft.</p><br>\n				<p>AbsoluteCraft has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party sites or services. We strongly advise you to read the terms and conditions and privacy policy of any third-party site that you visit.</p><br>\n				<h3>Governing Law</h3>\n				<p>This Agreement (and any further rules, policies, or guidelines incorporated by reference) shall be governed and construed in accordance with the laws of United Kingdom, without giving effect to any principles of conflicts of law.</p><br>\n				<h3>Changes To This Agreement</h3>\n				<p>We reserve the right, at our sole discretion, to modify or replace these Terms of Service by posting the updated terms on the Site. Your continued use of the Site after any such changes constitutes your acceptance of the new Terms of Service.</p><br>\n				<p>Please review this Agreement periodically for changes. If you do not agree to any of this Agreement or any changes to this Agreement, do not use, access or continue to access the Site or discontinue any use of the Site immediately.</p><br>\n			</section>",
+			"if(",
+			"isset",
+			"@foreach",
+			"world",
+			"worlds",
+			"world",
+			"worlds",
+			"world",
+			"worlds",
+			"get",
+			"planetminecraft",
+			"team",
+			"facebook",
+			"skype",
+			"contact_email",
+			"039",
+			"list",
+			"HTML_BBCodeParser2",
+			"BBCodeParser2",
+			"HTML_BBCodeParser2",
+			"BBCodeParser2",
+			"HTML_BBCodeParser2",
+			"require"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"http://local.wordpress/blank-canvas/",
+			"money: '0'",
+			"'0'"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1785,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								564,
+								564
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai Low-Profile.tmTheme",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2000,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								310,
+								310
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai Low-Profile.tmTheme",
+							"syntax": "Packages/CSS/CSS.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/start.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7677,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7294,
+								7294
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai Low-Profile.tmTheme",
+							"incomplete_sync": null,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4507.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "js/gameLoop.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1680,
+								1680
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/User/Color Highlighter/themes/Monokai Low-Profile.tmTheme",
+							"incomplete_sync": null,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2015.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"project": "canvashead.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"~/Documents/Web/Drunk Coders/drunkcoders.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 209.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

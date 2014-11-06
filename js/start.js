@@ -36,13 +36,21 @@ var game,
 	ammo;
 
 window.requestAnimFrame = (function() {
-	return  window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
+	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
 		window.setTimeout(callback, 1000 / 60);
 	};
 })();
 window.cancelAnimFrame = (function() {
 	return window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame;
 })();
+
+Array.prototype.remove = function(value) {
+	var idx = this.indexOf(value);
+	if (idx != -1) {
+		return this.splice(idx, 1); // The second parameter is the number of elements to remove.
+	}
+	return false;
+}
 
 window.onkeydown = function(e) {
 	keys[e.which] = true;
@@ -284,6 +292,7 @@ function init() {
 		draw: function(canvas, ctx) {
 			scene.clear(canvas, ctx);
 
+			// should be scene.objects.push(zombies, bullets) or for each zombies, bullets
 			for(var i = 0; i < scene.objects.length; i++) {
 				scene.objects[i].draw();
 			}
@@ -312,18 +321,6 @@ function pad(str, max) {
 
 function addObject(object) {
 	scene.objects.push(object);
-
-	// Move the UI to front of scene
-	if(game) {
-		for(var i = 0; i < scene.objects.length; i++) {
-			if(scene.objects[i].type === 'ui') {
-				scene.objects.push(scene.objects[i]);
-				scene.objects.splice(i, 1);
-			}
-		}
-
-		scene.objects.push(healthBG, healthFG, scoreText);
-	}
 }
 
 function removeObject(object) {
