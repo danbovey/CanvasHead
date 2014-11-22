@@ -21,15 +21,16 @@ var canvas = document.getElementById('game'),
 var game,
 	score,
 	combo,
+	comboCountdown,
 	health,
 	kills,
 	wave,
-	wavesEntered = [],
-	aiLoop = 0,
-	zombies = [],
-	zombieID = 0,
-	bullets = [],
-	bulletID = 0,
+	wavesEntered,
+	wavesStarted,
+	waveCountdown,
+	waveTime,
+	zombies,
+	bullets,
 	shooting,
 	upgrade,
 	damage,
@@ -161,7 +162,7 @@ function Text(params) {
 	}
 }
 
-var healthBG, healthFG, scoreText, gameOver, wall1, wall2, wall3, wall4, zombie1, zombie2, player;
+var healthBG, healthFG, scoreText, comboText, gameOver, wall1, wall2, wall3, wall4, zombie1, zombie2, player;
 
 function init() {
 	canvas = document.getElementById('game');
@@ -174,10 +175,26 @@ function init() {
 	health = 100;
 	kills = 0;
 	wave = 1;
+	zombies = [];
+	wavesEntered = [];
+	waveTime = 12000;
+	wavesStarted = false;
+	bullets = [];
 	shooting = false;
 	ammo = 100;
 	upgrade = 0;
 	damage = 1;
+
+	waveCountdown = window.setInterval(function() {
+		wave++;
+		waveTime = waveTime * 2;
+	}, waveTime);
+
+	comboCountdown = window.setInterval(function() {
+		if(combo > 1) {
+			combo = combo - 1;
+		}
+	}, 4000);
 
 	healthBG = new Rectangle({
 		type: 'ui',
@@ -210,6 +227,17 @@ function init() {
 		strokeStyle: '#000000',
 		lineWidth: 4,
 		text: pad(score, 8)
+	});
+	comboText = new Text({
+		type: 'ui',
+		ctx: ctx,
+		x: 465,
+		y: 45,
+		font: '20px Arial',
+		fillStyle: '#FFFFFF',
+		strokeStyle: '#000000',
+		lineWidth: 3 + 'x',
+		text: combo
 	});
 
 	gameOver = new Text({
@@ -292,19 +320,67 @@ function init() {
 		draw: function(canvas, ctx) {
 			scene.clear(canvas, ctx);
 
-			// should be scene.objects.push(zombies, bullets) or for each zombies, bullets
 			for(var i = 0; i < scene.objects.length; i++) {
 				scene.objects[i].draw();
 			}
 		}
 	};
 
-	scene.objects = [player, healthBG, healthFG, wall1, wall2, wall3, wall4, scoreText];
+	scene.objects = [player, healthBG, healthFG, wall1, wall2, wall3, wall4, scoreText, comboText];
 	if(!request) {
 		gameLoop();
 	}
 };
-init();
+
+function getCursor(canvas, e) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+		x: e.clientX - rect.left,
+		y: e.clientY - rect.top
+	};
+}
+
+function menu() {
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.font = '48px Bowlby One SC';
+	ctx.fillStyle = '#B22F2F'
+	ctx.strokeStyle = '#FFFFFF';
+	ctx.lineWidth = 6;
+	ctx.strokeText('SINGLEPLAYER', 200, 200);
+	ctx.fillText('SINGLEPLAYER', 200, 200);
+	ctx.strokeText('MULTIPLAYER', 212, 280);
+	ctx.fillText('MULTIPLAYER', 212, 280);
+
+	canvas.onmouseup = function(e) {
+		if(game !== true) {
+			var cursor = getCursor(canvas, e);
+
+			if(cursor.x > 200 && cursor.x < 600 && cursor.y > 160 && cursor.y < 200) {
+				init();
+			} else if(cursor.x > 211 && cursor.x < 588 && cursor.y > 242 && cursor.y < 283) {
+				alert('Multiplayer coming soon!');
+			}
+		}
+	}
+}
+function load() {
+	ctx.fillStyle = '#FFFFFF';
+	ctx.strokeStyle = '#FFFFFF';
+	ctx.fillRect(297, 237, 206, 16);
+	ctx.strokeRect(300, 240, 200, 10);
+	var i = 0;
+	var load = window.setInterval(function() {
+		if(i === 200) {
+			window.clearTimeout(load);
+			menu();
+		} else {
+			i = i + 10;
+			ctx.fillStyle = '#B22F2F';
+			ctx.fillRect(300, 240, i, 10);
+		}
+	}, 50);
+}
+load();
 
 function pick(a, b) {
 	if(typeof a !== 'undefined') {

@@ -9,8 +9,15 @@ function gameLoop() {
 		input();
 		update();
 		render();
+	}
 
-		console.log(scene.objects.length);
+	// Restart
+	if(keys[82]) {
+		game = false;
+		window.clearInterval(waveCountdown);
+		window.clearInterval(comboCountdown);
+
+		init();
 	}
 }
 
@@ -54,14 +61,6 @@ function input() {
 	if(keys[32]) {
 		shoot();
 	}
-
-	// Restart
-	if(keys[82]) {
-		window.cancelAnimFrame(request);
-		request = false;
-
-		init();
-	}
 }
 
 function update() {
@@ -71,11 +70,6 @@ function update() {
 
 	upgrades();
 	ui();
-
-	if(health <= 0) {
-		scene.objects.push(gameOver);
-		game = false;
-	}
 }
 
 function render() {
@@ -88,7 +82,6 @@ function shoot() {
 		shooting = true;
 
 		var bullet = new Rectangle({
-			id: bulletID,
 			type: 'bullet',
 			ctx: ctx,
 			x: 0,
@@ -138,8 +131,6 @@ function shoot() {
 		// should be bullets.push(bullet)
 		addObject(bullet);
 
-		bulletID++;
-
 		window.setTimeout(function() {
 			shooting = false;
 		}, 400);
@@ -173,7 +164,7 @@ function collision() {
 					if(Math.ceil(scene.objects[i].x) > scene.objects[i].lastX) {
 						scene.objects[i].x = scene.objects[i].lastX;
 						if(scene.objects[i].type === 'zombie' && scene.objects[x].type === 'player') {
-							health = health - 0.1;
+							health = health - 0.5;
 						}
 					}
 				}
@@ -181,7 +172,7 @@ function collision() {
 					if(Math.ceil(scene.objects[i].x) < scene.objects[i].lastX) {
 						scene.objects[i].x = scene.objects[i].lastX;
 						if(scene.objects[i].type === 'zombie' && scene.objects[x].type === 'player') {
-							health = health - 0.1;
+							health = health - 0.5;
 						}
 					}
 				}
@@ -190,7 +181,7 @@ function collision() {
 					if(Math.ceil(scene.objects[i].y) > scene.objects[i].lastY) {
 						scene.objects[i].y = scene.objects[i].lastY;
 						if(scene.objects[i].type === 'zombie' && scene.objects[x].type === 'player') {
-							health = health - 0.1;
+							health = health - 0.5;
 						}
 					}
 				}
@@ -198,7 +189,7 @@ function collision() {
 					if(Math.ceil(scene.objects[i].y) < scene.objects[i].lastY) {
 						scene.objects[i].y = scene.objects[i].lastY;
 						if(scene.objects[i].type === 'zombie' && scene.objects[x].type === 'player') {
-							health = health - 0.1;
+							health = health - 0.5;
 						}
 					}
 				}
@@ -220,7 +211,12 @@ function collision() {
 					if(scene.objects[x].health <= 0) {
 						indexesToRemove.push(scene.objects[x]);
 
-						score = score + combo;
+						health = health + 5;
+						if(health > 100) {
+							health = 100;
+						}
+						score = score + (200 * combo);
+						combo = combo + 1;
 					}
 				}
 			}
@@ -233,14 +229,6 @@ function collision() {
 	indexesToRemove = [];
 }
 
-var wavesStarted = false;
-var waveTime = 12000;
-var waveCountdown = window.setInterval(function() {
-	wave++;
-	waveTime = waveTime * 2;
-	console.log(wave);
-}, waveTime);
-
 function waves() {
 	// if(wavesStarted === false) {
 		// wavesStarted = true;
@@ -248,7 +236,6 @@ function waves() {
 			for(var i = 0, algorithm = wave * 2; i <= algorithm; i++) {
 				if(i < algorithm / 2) {
 					var zombie = new Rectangle({
-						id: zombieID,
 						type: 'zombie',
 						health: 2,
 						ctx: ctx,
@@ -262,7 +249,6 @@ function waves() {
 					});
 				} else {
 					var zombie = new Rectangle({
-						id: zombieID,
 						type: 'zombie',
 						health: 2,
 						ctx: ctx,
@@ -278,8 +264,6 @@ function waves() {
 				// Should be only zombies.push
 				zombies.push(zombie);
 				addObject(zombie);
-
-				zombieID++;
 			}
 			wavesEntered.push(wave);
 		}
@@ -344,6 +328,8 @@ function upgrades() {
 function ui() {
 	if(health >= 0) {
 		healthFG.width = (health / 100) * 24;
+	} else {
+		scene.objects.push(gameOver);
 	}
 	healthFG.x = player.x;
 	healthBG.x = player.x;
@@ -351,4 +337,5 @@ function ui() {
 	healthBG.y = player.y - 10;
 
 	scoreText.text = pad(score, 8);
+	comboText.text = combo + 'x';
 }
