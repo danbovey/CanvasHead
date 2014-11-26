@@ -67,8 +67,6 @@ function update() {
 	waves();
 	ai();
 	collision();
-
-	upgrades();
 	ui();
 }
 
@@ -128,7 +126,6 @@ function shoot() {
 			break;
 		}
 		
-		// should be bullets.push(bullet)
 		addObject(bullet);
 
 		window.setTimeout(function() {
@@ -160,6 +157,7 @@ function collision() {
 		// Collision checks
 		for(var x = 0; x < scene.objects.length; x++) {
 			if(scene.objects[i].type !== 'ui' && scene.objects[x].type !== 'ui') {
+				// Diagonal movement around walls
 				if(Math.ceil(scene.objects[i].x) + scene.objects[i].width === Math.ceil(scene.objects[x].x) && (Math.ceil(scene.objects[i].y) >= Math.ceil(scene.objects[x].y) && Math.ceil(scene.objects[i].y) <= Math.ceil(scene.objects[x].y) + scene.objects[x].height || Math.ceil(scene.objects[i].y) + scene.objects[i].height >= Math.ceil(scene.objects[x].y) && Math.ceil(scene.objects[i].y) + scene.objects[i].height <= Math.ceil(scene.objects[x].y) + scene.objects[x].height)) { // East
 					if(Math.ceil(scene.objects[i].x) > scene.objects[i].lastX) {
 						scene.objects[i].x = scene.objects[i].lastX;
@@ -195,7 +193,6 @@ function collision() {
 				}
 			}
 
-			// If an object is inside another object
 			if(scene.objects[i].x < scene.objects[x].x + scene.objects[x].width  && scene.objects[i].x + scene.objects[i].width  > scene.objects[x].x && scene.objects[i].y < scene.objects[x].y + scene.objects[x].height && scene.objects[i].y + scene.objects[i].height > scene.objects[x].y) {
 				if(scene.objects[i].type === 'player' && scene.objects[x].type === 'zombie') {
 					player.x = player.lastX;
@@ -210,10 +207,13 @@ function collision() {
 					scene.objects[x].health = scene.objects[x].health - damage;
 					if(scene.objects[x].health <= 0) {
 						indexesToRemove.push(scene.objects[x]);
+						zombies.splice(0, 1);
 
-						health = health + 5;
-						if(health > 100) {
-							health = 100;
+						if(nightmare === false) {
+							health = health + 5;
+							if(health > 100) {
+								health = 100;
+							}
 						}
 						score = score + (200 * combo);
 						combo = combo + 1;
@@ -230,44 +230,31 @@ function collision() {
 }
 
 function waves() {
-	// if(wavesStarted === false) {
-		// wavesStarted = true;
-		if(wavesEntered[wave] == undefined) {
-			for(var i = 0, algorithm = wave * 2; i <= algorithm; i++) {
-				if(i < algorithm / 2) {
-					var zombie = new Rectangle({
-						type: 'zombie',
-						health: 2,
-						ctx: ctx,
-						x: Math.floor(Math.random() * (800 - 0 + 1) + 0),
-						y: -36,
-						width: 24,
-						height: 36,
-						fillStyle: '#000000',
-						lineWidth: 1,
-						strokeStyle: '#000000'
-					});
-				} else {
-					var zombie = new Rectangle({
-						type: 'zombie',
-						health: 2,
-						ctx: ctx,
-						x: Math.floor(Math.random() * (800 - 0 + 1) + 0),
-						y: canvas.height,
-						width: 24,
-						height: 36,
-						fillStyle: '#000000',
-						lineWidth: 1,
-						strokeStyle: '#000000'
-					});
-				}
-				// Should be only zombies.push
-				zombies.push(zombie);
-				addObject(zombie);
+	if(wavesEntered[wave] == undefined) {
+		for(var i = 0, algorithm = wave * 2; i <= algorithm; i++) {
+			if(i < algorithm / 2) {
+				var zombie = new Zombie({
+					health: 2,
+					ctx: ctx,
+					fillStyle: '#FFFFFF'
+				});
+			} else {
+				var zombie = new Zombie({
+					health: 2,
+					ctx: ctx,
+					fillStyle: '#FFFFFF'
+				});
 			}
-			wavesEntered.push(wave);
+			if(nightmare === true) {
+				zombie.fillStyle = '#000000';
+				zombie.health = 3;
+			}
+
+			zombies.push(zombie);
+			addObject(zombie);
 		}
-	// }
+		wavesEntered.push(wave);
+	}
 }
 
 function ai() {
@@ -311,16 +298,6 @@ function ai() {
 					object.y = object.y - 8;
 				}
 			}
-		}
-	}
-}
-
-function upgrades() {
-	if(upgrade !== 10) { // Max amount of upgrades
-		if(score >= 200) {
-			upgrade = 2;
-		} else if(score >= 100) {
-			upgrade = 1;
 		}
 	}
 }
