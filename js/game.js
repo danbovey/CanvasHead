@@ -176,7 +176,6 @@ function Zombie(params) {
 	Rectangle.apply(this, arguments);
 
 	this.x = Math.floor(Math.random() * (800 - 0 + 1) + 0);
-	this.y = -36;
 	this.width = 24;
 	this.height = 36;
 	this.lineWidth = 1;
@@ -694,12 +693,14 @@ function waves() {
 				var zombie = new Zombie({
 					health: 2,
 					ctx: ctx,
+					y: -36,
 					fillStyle: '#FFFFFF'
 				});
 			} else {
 				var zombie = new Zombie({
 					health: 2,
 					ctx: ctx,
+					y: canvas.height,
 					fillStyle: '#FFFFFF'
 				});
 			}

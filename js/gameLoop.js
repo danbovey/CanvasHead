@@ -236,12 +236,14 @@ function waves() {
 				var zombie = new Zombie({
 					health: 2,
 					ctx: ctx,
+					y: -36,
 					fillStyle: '#FFFFFF'
 				});
 			} else {
 				var zombie = new Zombie({
 					health: 2,
 					ctx: ctx,
+					y: canvas.height,
 					fillStyle: '#FFFFFF'
 				});
 			}
