@@ -1,0 +1,11 @@
+{
+  "name": "CanvasHead",
+  "author": "Dan Bovey <dan@danbovey.uk>",
+  "homepage": "http://danbovey.uk/lab/canvashead",
+  "version": "1.0.0",
+  "description": "Based on Boxhead 2!",
+  "repository": {
+  	"type": "git",
+  	"url": "https://github.com/danbovey/CanvasHead"
+  }
+}

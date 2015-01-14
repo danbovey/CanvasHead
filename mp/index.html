@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+	<title>CanvasHead Multiplayer</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+	<div class="container">
+		<canvas id="game" width="800" height="500"></canvas>
+		<div id="form">
+			<label>Username</label><input type="text" id="username" autofocus><br><br>
+			<label>Keyword for avatar</label><input type="text" id="avatar">
+			<button id="info-btn">Enter Multiplayer</button>
+		</div>
+		<table>
+			<thead>
+				<tr>
+					<td><strong>Players</strong></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody id="playerlist">
+
+			</tbody>
+		</table>
+	</div>
+	<script src="game.js"></script>
+</body>
+</html>

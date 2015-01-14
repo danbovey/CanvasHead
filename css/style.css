@@ -45,3 +45,43 @@ p a {
 	text-decoration: none;
 	color: #FF4444;
 }
+
+#form {
+	position: absolute;
+	top: 170px;
+	left: 470px;
+	width: 500px;
+	height: 200px;
+	padding: 50px;
+	background: #333;
+}
+#form label {
+	display: inline-block;
+	width: 150px;
+}
+#form button {
+	display: block;
+	margin-top: 20px;
+	margin-left: 150px;
+	padding: 8px;
+}
+
+table {
+	position: absolute;
+	top: 25px;
+	right: 20px;
+	width: 270px;
+}
+table thead tr td {
+	padding-bottom: 10px;
+}
+table tbody tr td {
+	display: inline-block;
+}
+table tbody tr td:first-child {
+	width: 35px;
+	margin-right: 10px;
+}
+table tbody img {
+	width: 32px;
+}

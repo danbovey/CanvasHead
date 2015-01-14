@@ -112,7 +112,6 @@ function Rectangle(params) {
 	this.lastY = null;
 	this.x2 = pick(params.x2, null);
 	this.y2 = pick(params.y2, null);
-	this.eating = false;
 
 	this.health = pick(params.health, 100);
 	this.kill = false;
