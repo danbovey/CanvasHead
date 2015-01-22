@@ -14,7 +14,11 @@ var game = false,
 	objects = [],
 	players = [],
 	bullets = [],
-	nextSocketId = 0;
+	zombies = [],
+	nextSocketId = 0,
+	wave = 1,
+	wavesEntered = [],
+	waveTime = 1200;
 
 var wall1 = {
 	x: 128,
@@ -58,7 +62,19 @@ var wall4 = {
 objects = [wall1, wall2, wall3, wall4];
 
 setInterval(gameLoop, 16);
-setInterval(sendPlayerUpdates, 16);
+setInterval(sendUpdates, 16);
+
+var waveCountdown = setInterval(function() {
+	if(zombies.length < 30) {
+		wave++;
+		// if(nightmare === false) {
+		// 	waveTime = waveTime * 4;
+		// } else {
+		// 	waveTime = waveTime * 2;
+		// }
+		waveTime = waveTime * 4;
+	}
+}, waveTime);
 
 function gameLoop() {
 	// Input
@@ -112,25 +128,6 @@ function gameLoop() {
 				player.shoot();
 			}
 
-			// Bullets
-			for(var bullet in bullets) {
-				if(bullet.x !== bullet.x2) {
-					if(bullet.x < bullet.x2) {
-						bullet.x = bullet.x + 8;
-					} else {
-						bullet.x = bullet.x - 8;
-					}
-				}
-
-				if(bullet.y !== bullet.y2) {
-					if(bullet.y < bullet.y2) {
-						bullet.y = bullet.y + 8;
-					} else {
-						bullet.y = bullet.y - 8;
-					}
-				}
-			}
-
 			// Check that the player is not outside of the canvas
 			if(player.x < 0 || player.x + player.width > 800) {
 				player.x = player.lastX;
@@ -138,36 +135,147 @@ function gameLoop() {
 			if(player.y < 0 || player.y + player.height > 500) {
 				player.y = player.lastY;
 			}
+		}
+	}
+
+	// Waves
+	if(wavesEntered[wave] == undefined) {
+		for(var i = 0, algorithm = wave * 2; i <= algorithm; i++) {
+			if(i < algorithm / 2) {
+				var zombie = new GameObjects.Rectangle({
+					x: Math.floor(Math.random() * 801),
+					width: 24,
+					height: 36,
+					lineWidth: 1,
+					strokeStyle: '#000000',
+					health: 2,
+					y: -36,
+					fillStyle: '#FFFFFF'
+				});
+			} else {
+				var zombie = new GameObjects.Rectangle({
+					x: Math.floor(Math.random() * 801),
+					width: 24,
+					height: 36,
+					lineWidth: 1,
+					strokeStyle: '#000000',
+					health: 2,
+					y: 500,
+					fillStyle: '#FFFFFF'
+				});
+			}
+			// if(nightmare === true) {
+			// 	zombie.fillStyle = '#000000';
+			// 	zombie.health = 3;
+			// }
+
+			zombies.push(zombie);
+		}
+		wavesEntered.push(wave);
+	}
+
+	// AI
+	for(var zombieId in zombies) {
+		var zombie = zombies[zombieId];
+
+		zombie.lastX = zombie.x;
+		zombie.lastY = zombie.y;
+
+		if(zombie.kill == false) {
+			var closestId = 0;
+			var closestX = 10000;
+			var closestY = 10000;
+
+			// Find the closest player
+			for(var socketId in players) {
+				var player = players[socketId];
+
+				if(player.x > zombie.x) {
+					if(player.y > zombie.y) {
+						if(player.x - zombie.x < closestX && player.y - zombie.y < closestY) {
+							closestId = socketId;
+							closestX = player.x;
+							closestY = player.y;
+						}
+					} else {
+						if(player.x -  zombie.x < closestX && zombie.y - player.y < closestY) {
+							closestId = socketId;
+							closestX = player.x;
+							closestY = player.y;
+						}
+					}
+				} else {
+					if(player.y > zombie.y) {
+						if(zombie.x - player.x < closestX && player.y - zombie.y < closestY) {
+							closestId = socketId;
+							closestX = player.x;
+							closestY = player.y;
+						}
+					} else {
+						if(zombie.x - player.x < closestX && zombie.y - player.y < closestY) {
+							closestId = socketId;
+							closestX = player.x;
+							closestY = player.y;
+						}
+					}
+				}
+			}
+
+			if(players.length > 0) {
+				var player = players[closestId];
+
+				if(player != null) {
+					if(player.x !== zombie.x) {
+						if(player.x > zombie.x) {
+							zombie.x = zombie.x + 0.1;
+						} else {
+							zombie.x = zombie.x - 0.1;
+						}
+					}
+
+					if(player.y !== zombie.y) {
+						if(player.y > zombie.y) {
+							zombie.y = zombie.y + 0.1;
+						} else {
+							zombie.y = zombie.y - 0.1;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Player Collision
+	for(var socketId in players) {
+		if(players.hasOwnProperty(socketId)) {
+			var player = players[socketId];
 
 			for(var i = 0; i < objects.length; i++) {
-				var objectx = objects[i].x + 77;
-				var objecty = objects[i].y + 63;
-				var objectw = objects[i].width - 77;
-				var objecth = objects[i].height - 63;
+				var object = objects[i];
 
-				if(Math.ceil(player.x) + player.width === objectx) {
-					if(Math.ceil(player.y) >= objecty && Math.ceil(player.y) <= objecty + objecth || Math.ceil(player.y) + player.height >= objecty && Math.ceil(player.y) + player.height <= objecty + objecth) { // West
+				if(Math.ceil(player.x) + player.width === object.x) {
+					if(Math.ceil(player.y) >= object.y && Math.ceil(player.y) <= object.y + object.height || Math.ceil(player.y) + player.height >= object.y && Math.ceil(player.y) + player.height <= object.y + object.height) { // West
 						if(Math.ceil(player.x) > player.lastX) {
 							player.x = player.lastX;
 						}
 					}
 				}
-				if(Math.ceil(player.x) === objectx + objectw && (Math.ceil(player.y) >= objecty && Math.ceil(player.y) <= objecty + objecth || Math.ceil(player.y) + player.height >= objecty && Math.ceil(player.y) + player.height <= objecty + objecth)) { // East
+				if(Math.ceil(player.x) === object.x + object.width && (Math.ceil(player.y) >= object.y && Math.ceil(player.y) <= object.y + object.height || Math.ceil(player.y) + player.height >= object.y && Math.ceil(player.y) + player.height <= object.y + object.height)) { // East
 					if(Math.ceil(player.x) < player.lastX) {
 						player.x = player.lastX;
 					}
 				}
-				if(Math.ceil(player.y) + player.height === objecty && (Math.ceil(player.x) >= objectx && Math.ceil(player.x) <= objectx + objectw || Math.ceil(player.x) + player.width >= objectx && Math.ceil(player.x) + player.width <= objectx + objectw)) { // South
+				if(Math.ceil(player.y) + player.height === object.y && (Math.ceil(player.x) >= object.x && Math.ceil(player.x) <= object.x + object.width || Math.ceil(player.x) + player.width >= object.x && Math.ceil(player.x) + player.width <= object.x + object.width)) { // South
 					if(Math.ceil(player.y) > player.lastY) {
 						player.y = player.lastY;
 					}
 				}
-				if(Math.ceil(player.y) === objecty + objecth && (Math.ceil(player.x) >= objectx && Math.ceil(player.x) <= objectx + objectw || Math.ceil(player.x) + player.width >= objectx && Math.ceil(player.x) + player.width <= objectx + objectw)) { // North
+				if(Math.ceil(player.y) === object.y + object.height && (Math.ceil(player.x) >= object.x && Math.ceil(player.x) <= object.x + object.width || Math.ceil(player.x) + player.width >= object.x && Math.ceil(player.x) + player.width <= object.x + object.width)) { // North
 					if(Math.ceil(player.y) < player.lastY) {
 						player.y = player.lastY;
 					}
 				}
-				if(Math.ceil(player.x) < objectx + objectw  && Math.ceil(player.x) + player.width > objectx && Math.ceil(player.y) < objecty + objecth && Math.ceil(player.y) + player.height > objecty) {
+				if(Math.ceil(player.x) < object.x + object.width  && Math.ceil(player.x) + player.width > object.x && Math.ceil(player.y) < object.y + object.height && Math.ceil(player.y) + player.height > object.y) {
 					player.x = player.lastX;
 					player.y = player.lastY;
 				}
@@ -175,24 +283,40 @@ function gameLoop() {
 		}
 	}
 
-	for(var i = bullets.length; i > bullets.length; i--) {
-		var deleted = false;
+	// Bullet Collision
+	for(var bulletId in bullets) {
+		var bullet = bullets[bulletId];
+
+		// Move the bullets
+		if(bullet.x !== bullet.x2) {
+			if(bullet.x < bullet.x2) {
+				bullet.x = bullet.x + 8;
+			} else {
+				bullet.x = bullet.x - 8;
+			}
+		}
+
+		if(bullet.y !== bullet.y2) {
+			if(bullet.y < bullet.y2) {
+				bullet.y = bullet.y + 8;
+			} else {
+				bullet.y = bullet.y - 8;
+			}
+		}
 
 		// Check that bullets are not outside of the canvas
-		if(bullets[i].x < 0 || bullets[i].x + bullets[i].width > 800 || bullets[i].y < 0 || bullets[i].y + bullets[i].height > 500) {
-			bullets.splice(i, 1);
+		var deleted = false;
+		if(bullet.x < 0 || bullet.x + bullet.width > 800 || bullet.y < 0 || bullet.y + bullet.height > 500) {
+			bullets.splice(bulletId, 1);
 			deleted = true;
 		}
 
 		if(deleted === false) {
 			// Check that bullets are not inside objects
 			for(var x = 0; x < objects.length; x++) {
-				var objectx = objects[i].x + 77;
-				var objecty = objects[i].y + 63;
-				var objectw = objects[i].width - 77;
-				var objecth = objects[i].height - 63;
+				var object = objects[x];
 
-				if(bullet.x < objectx + objectw  && bullet.x + bullet.width > objectx && bullet.y < objecty + objecth && bullet.y + bullet.height > objecty) {
+				if(bullet.x < object.x + object.width && bullet.x + bullet.width > object.x && bullet.y < object.y + object.height && bullet.y + bullet.height > object.y) {
 					bullets.splice(i, 1);
 					deleted = true;
 				}
@@ -201,17 +325,55 @@ function gameLoop() {
 
 		if(deleted === false) {
 			// Check that bullets are not inside zombies
+		}
 
+		for(var zombieId in zombies) {
+			var zombie = zombies[zombieId];
+
+
+		}
+	}
+
+	// Zombie Collision
+	for(var zombieId in zombies) {
+		var zombie = zombies[zombieId];
+
+		for(var zombie2Id in zombies) {
+			var zombie2 = zombies[zombie2Id];
+
+			if(zombie.x + zombie.width === zombie2.x) {
+				if(zombie.x >= zombie2.y && zombie.y <= zombie2.y + zombie2.height || zombie.y + zombie.height >= zombie2.y && zombie.y + zombie.height <= zombie2.y + zombie2.height) { // West
+					if(zombie.x > zombie.lastX) {
+						zombie.x = zombie.lastX;
+					}
+				}
+			}
+			if(zombie.x === zombie2.x + zombie2.width && (zombie.y >= zombie2.y && zombie.y <= zombie2.y + zombie2.height || zombie.y + zombie.height >= zombie2.y && zombie.y + zombie.height <= zombie2.y + zombie2.height)) { // East
+				if(zombie.x < zombie.lastX) {
+					zombie.x = zombie.lastX;
+				}
+			}
+			if(zombie.y + zombie.height === zombie2.y && (zombie.x >= zombie2.x && zombie.x <= zombie2.x + zombie2.width || zombie.x + zombiew >= zombie2.x && zombie.x + zombiew <= zombie2.x + zombie2.width)) { // South
+				if(zombie.y > zombie.lastY) {
+					zombie.y = zombie.lastY;
+				}
+			}
+			if(zombie.y === zombie2.y + zombie2.height && (zombie.x >= zombie2.x && zombie.x <= zombie2.x + zombie2.w || zombie.x + zombiew >= zombie2.x && zombie.x + zombiew <= zombie2.x + zombie2.width)) { // North
+				if(zombie.y < zombie.lastY) {
+					zombie.y = zombie.lastY;
+				}
+			}
 		}
 	}
 }
 
-function sendPlayerUpdates() {
+function sendUpdates() {
 	if(game == true) {
 		var response = {
-			'type': 'players',
+			'type': 'update',
 			'players': {},
-			'bullets': {}
+			'bullets': {},
+			'zombies': {}
 		};
 
 		for(var socketId in players) {
@@ -233,19 +395,32 @@ function sendPlayerUpdates() {
 			}
 		}
 
-		var b = 0;
-		for(var bullet in bullets) {
+		for(var bulletId in bullets) {
+			var bullet = bullets[bulletId];
+
 			var properties = {};
 			for(var property in bullet) {
 				properties[property] = bullet[property];
 			}
 
-			response.bullets[b] = {
+			response.bullets[bulletId] = {
 				'type': 'bullet',
 				'properties': properties
 			}
+		}
 
-			b++;
+		for(var zombieId in zombies) {
+			var zombie = zombies[zombieId];
+
+			var properties = {};
+			for(var property in zombie) {
+				properties[property] = zombie[property];
+			}
+
+			response.zombies[zombieId] = {
+				'type': 'zombie',
+				'properties': properties
+			}
 		}
 
 		wss.broadcast(

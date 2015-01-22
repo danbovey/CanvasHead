@@ -213,21 +213,7 @@ function init() {
 	}
 };
 
-var btn = document.getElementById('info-btn');
-var username, avatar, ws;
-btn.onmouseup = function getInfo() {
-	username = document.getElementById('username').value;
-	avatar = document.getElementById('avatar').value;
-	document.getElementById('form').style.display = 'none';
-	ws.send(
-		JSON.stringify({
-			'type': 'info',
-			'username': username,
-			'avatar': avatar
-		})
-	);
-	init();
-}
+
 
 function gameLoop() {
 	if(game === true) {
@@ -248,7 +234,30 @@ function render() {
 
 var ws = new WebSocket('ws://localhost:1337');
 ws.onopen = function(){
+	var username, avatar;
+	if(window.localStorage.getItem('username') && window.localStorage.getItem('avatar')) {
+		document.getElementById('username').value = window.localStorage.getItem('username');
+		document.getElementById('avatar').value = window.localStorage.getItem('avatar');
+	}
 	
+	var btn = document.getElementById('info-btn');
+	btn.onmouseup = function getInfo() {
+		username = document.getElementById('username').value;
+		avatar = document.getElementById('avatar').value;
+		document.getElementById('form').style.display = 'none';
+
+		window.localStorage.setItem('username', username);
+		window.localStorage.setItem('avatar', avatar);
+
+		ws.send(
+			JSON.stringify({
+				'type': 'info',
+				'username': username,
+				'avatar': avatar
+			})
+		);
+		init();
+	}
 };
 ws.onmessage = function(e) {
 	var data;
@@ -268,7 +277,7 @@ ws.onmessage = function(e) {
 			}
 	} else if(data.type === 'score') {
 		score = data.newScore;
-	} else if(data.type === 'players') {
+	} else if(data.type === 'update') {
 		if(game == true) {
 			for(var playerId in players) {
 				if(players.hasOwnProperty(playerId)) {
@@ -301,19 +310,35 @@ ws.onmessage = function(e) {
 					}
 				}
 			}
-			for(var bulletId in bullets) {
-				scene.remove(bullets[bulletId]);
+			if(data.bullets.length != 0) {
+				for(var bulletId in bullets) {
+					scene.remove(bullets[bulletId]);
+				}
+				bullets = {};
+
+				for(var bulletId in data.bullets) {
+					var serverBullet = data.bullets[bulletId];
+					serverBullet.properties.ctx = ctx;
+
+					var bullet = new Rectangle(serverBullet.properties);
+					scene.objects.push(bullet);
+					bullets[bulletId] = bullet;
+				}
 			}
-			bullets = {};
+			if(data.zombies.length != 0) {
+				for(var zombieId in zombies) {
+					scene.remove(zombies[zombieId]);
+				}
+				zombies = {};
 
-			for(var bulletId in data.bullets) {
-				var serverBullet = data.bullets[bulletId];
-				serverBullet.properties.ctx = ctx;
+				for(var zombieId in data.zombies) {
+					var serverZombie = data.zombies[zombieId];
+					serverZombie.properties.ctx = ctx;
 
-				var bullet = new Rectangle(serverBullet.properties);
-				console.log(bullet);
-				scene.objects.push(bullet);
-				bullets[bulletId] = bullet;
+					var zombie = new Rectangle(serverZombie.properties);
+					scene.objects.push(zombie);
+					zombies[zombieId] = zombie;
+				}
 			}
 		}
 	} else if(data.type = 'playerlist') {
@@ -334,7 +359,7 @@ ws.onclose = function(){
 var canvas = document.getElementById('game');
 
 window.onkeydown = function(e) {
-	if(disconnected === false) {
+	if(disconnected === false && game === true) {
 		keys[e.which] = true;
 
 		ws.send(
@@ -352,7 +377,7 @@ window.onkeydown = function(e) {
 }
 
 window.onkeyup = function(e) {
-	if(disconnected === false) {
+	if(disconnected === false && game === true) {
 		keys[e.which] = false;
 
 		ws.send(
